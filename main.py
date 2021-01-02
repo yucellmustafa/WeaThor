@@ -17,16 +17,16 @@ def main():
         city = input("City : ")
         state = input("State (default = center) : ")
         url = f"https://mgm.gov.tr/?il={city}&ilce={state}"
-
+        #tarayıcı oluşturup arka plana aldık
         options = webdriver.ChromeOptions()
         options.add_argument('--headless')
 
         dr = webdriver.Chrome(options=options)
         dr.get(url)
 
-
-        city = dr.find_element_by_xpath('//*[@id="siteBody"]/section[1]/div/div[2]/div[2]/h3[1]/span').text
-        state = dr.find_element_by_xpath('//*[@id="siteBody"]/section[1]/div/div[2]/div[2]/h3[1]/ziko').text
+        #verileri çektik
+        state = dr.find_element_by_xpath('//*[@id="siteBody"]/section[1]/div/div[2]/div[2]/h3[1]/span').text
+        city = dr.find_element_by_xpath('//*[@id="siteBody"]/section[1]/div/div[2]/div[2]/h3[1]/ziko').text
         nTime = dr.find_element_by_xpath('//*[@id="siteBody"]/section[1]/div/div[2]/div[2]/p').text
         nT = dr.find_element_by_xpath('//*[@id="siteBody"]/section[1]/div/div[2]/div[2]/div/h3/span[1]/ziko').text + "°C"
         nH = "% " + dr.find_element_by_xpath('//*[@id="siteBody"]/section[1]/div/div[2]/div[2]/div/h3/span[2]/div/span[3]/span[3]').text
@@ -36,8 +36,8 @@ def main():
 
         def listAdd(nextX, X):
             nextX.append(dr.find_element_by_xpath(f'//*[@id="t{X}"]/div/div[1]/div[1]').text)
-            nextX.append(dr.find_element_by_xpath(f'//*[@id="t{X}"]/div/div[1]/div[4]/span[1]').text + "°C")
             nextX.append(dr.find_element_by_xpath(f'//*[@id="t{X}"]/div/div[1]/div[5]/span[1]').text + "°C")
+            nextX.append(dr.find_element_by_xpath(f'//*[@id="t{X}"]/div/div[1]/div[4]/span[1]').text + "°C")
             dr.find_element_by_xpath(f'//*[@id="t{X}"]').click()
             nextX.append("% " + dr.find_element_by_xpath(f'//*[@id="t{X}"]/div/div[2]/div[2]').text)
             nextX.append(dr.find_element_by_xpath(f'//*[@id="t{X}"]/div/div[1]/div[3]').text)
@@ -48,6 +48,8 @@ def main():
         listAdd(next4, 4)
         listAdd(next5, 5)
 
+        dr.close() #tarayıcıyı kapattık
+        #verileri ekrana yazdırdık
         os.system('cls' if os.name == 'nt' else 'clear')
         print(f"{banner}\nCity : {city}\nState : {state}\nUpdate DateTime : {nTime}\n" + "-"*70)
         print(f"""
@@ -63,8 +65,7 @@ def main():
 {next4[0]:^10}|{next4[1]:^13}|{next4[2]:^12}|{next4[3]:^10}|{next4[4]:^20}|
 {next5[0]:^10}|{next5[1]:^13}|{next5[2]:^12}|{next5[3]:^10}|{next5[4]:^20}|""")
 
-        dr.close()
-        close = input("\nInput 'Q' or 'q' to close :: ")
+        close = input("\nInput 'Q' or 'q' to close :: ") #programdan çıkılsın mı diye sorduk
 
 if __name__ == '__main__':
     main()
