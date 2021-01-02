@@ -3,6 +3,8 @@ It is a weather program.
 
 Used Selenium Library (pip install selenium)
 
+ChromeDriver --version : 87.0.4280.88
+
 Data Source : https://mgm.gov.tr/
 
 Program Screen Shoots :
