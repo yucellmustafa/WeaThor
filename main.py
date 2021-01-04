@@ -3,10 +3,7 @@ from selenium import webdriver
 
 def main():
     close = str()
-
-    while close.lower() != "q":
-        os.system('cls' if os.name == 'nt' else 'clear')
-        banner = """
+    banner = """
  __        __               _     _       ____    _     _   _         
  \ \      / / ___    __ _  | |_  | |__   / ___|  | |_  (_) | |   ___  
   \ \ /\ / / / _ \  / _` | | __| | '_ \  \___ \  | __| | | | |  / _ \ 
@@ -14,19 +11,29 @@ def main():
     \_/\_/   \___|  \__,_|  \__| |_| |_| |____/   \__| |_| |_|  \___/ 
 \n""" + "-"*70 + "\nData Source : https://mgm.gov.tr/"
 
+    #tarayıcı oluşturup arka plana aldık
+    try:
+        options = webdriver.ChromeOptions()
+        options.add_argument('--headless')
+        options.add_argument('--log-level=3')
+        dr = webdriver.Chrome(options=options)
+    except:
+        print("'chromedriver.exe' file Not found !")
+        input("Press any key to close...")
+        exit()
+    
+    while close.lower() != "q":
+        os.system('cls' if os.name == 'nt' else 'clear') #terminali temizledik
         print(banner)
         city = input("City : ")
         state = input("State (default = center) : ")
+        print("\nLoading...",end="")
         url = f"https://mgm.gov.tr/?il={city}&ilce={state}"
 
-        #tarayıcı oluşturup arka plana aldık
-        options = webdriver.ChromeOptions()
-        options.add_argument('--headless')
-
         try:
-            dr = webdriver.Chrome(options=options)
+            #adrese gittik
             dr.get(url)
-
+            
             #verileri çektik
             state = dr.find_element_by_xpath('//*[@id="siteBody"]/section[1]/div/div[2]/div[2]/h3[1]/span').text
             city = dr.find_element_by_xpath('//*[@id="siteBody"]/section[1]/div/div[2]/div[2]/h3[1]/ziko').text
@@ -53,11 +60,9 @@ def main():
 
         except:
             print("\nConnection Error!")
-            break
-
-        finally:
-            dr.close() #tarayıcıyı kapattık
-
+            dr.close()
+            input("Press any key to close...")
+            break          
 
         #verileri ekrana yazdırdık
         os.system('cls' if os.name == 'nt' else 'clear')
