@@ -3,7 +3,9 @@ It is a weather program.
 
 Used Selenium Library (pip install selenium)
 
-ChromeDriver --version : 87.0.4280.88
+ChromeDriver --version : 87.0.4280.88 ([chromedriver.exe](https://chromedriver.chromium.org/downloads))
+
+(You must download according to the version of Chrome on your computer.)
 
 Data Source : https://mgm.gov.tr/
 
