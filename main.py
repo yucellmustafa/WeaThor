@@ -1,33 +1,38 @@
 import os
 from selenium import webdriver
+from time import sleep
 
 def main():
     close = str()
     banner = """
- __        __               _     _       ____    _     _   _         
- \ \      / / ___    __ _  | |_  | |__   / ___|  | |_  (_) | |   ___  
-  \ \ /\ / / / _ \  / _` | | __| | '_ \  \___ \  | __| | | | |  / _ \ 
-   \ V  V / |  __/ | (_| | | |_  | | | |  ___) | | |_  | | | | | (_) |
-    \_/\_/   \___|  \__,_|  \__| |_| |_| |____/   \__| |_| |_|  \___/ 
-\n""" + "-"*70 + "\nData Source : https://mgm.gov.tr/"
+     __        __               _     _       ____    _     _   _         
+     \ \      / / ___    __ _  | |_  | |__   / ___|  | |_  (_) | |   ___  
+      \ \ /\ / / / _ \  / _` | | __| | '_ \  \___ \  | __| | | | |  / _ \ 
+       \ V  V / |  __/ | (_| | | |_  | | | |  ___) | | |_  | | | | | (_) |
+        \_/\_/   \___|  \__,_|  \__| |_| |_| |____/   \__| |_| |_|  \___/ 
+\n""" + "-"*80 + "\nKaynak : https://mgm.gov.tr/"
 
     #tarayıcı oluşturup arka plana aldık
     try:
         options = webdriver.ChromeOptions()
         options.add_argument('--headless')
         options.add_argument('--log-level=3')
-        dr = webdriver.Chrome(options=options)
+        if(os.name == "nt"):
+            dr = webdriver.Chrome("win/chromedriver.exe",options=options)
+        else:
+            dr = webdriver.Chrome("linux/chromedriver",options=options)
+        
     except:
-        print("'chromedriver.exe' file Not found !")
-        input("Press any key to close...")
+        print("'chromedriver' bulunamadı !")
+        input("Kapatmak için bir tuşa basınız...")
         exit()
     
     while close.lower() != "q":
         os.system('cls' if os.name == 'nt' else 'clear') #terminali temizledik
         print(banner)
-        city = input("City : ")
-        state = input("State (default = center) : ")
-        print("\nLoading...",end="")
+        city = input("İl : ")
+        state = input("İlçe (varsayılan = merkez) : ")
+        print("Yükleniyor...",end="")
         url = f"https://mgm.gov.tr/?il={city}&ilce={state}"
 
         try:
@@ -41,7 +46,7 @@ def main():
             nT = dr.find_element_by_xpath('//*[@id="siteBody"]/section[1]/div/div[2]/div[2]/div/h3/span[1]/ziko').text + "°C"
             nH = "% " + dr.find_element_by_xpath('//*[@id="siteBody"]/section[1]/div/div[2]/div[2]/div/h3/span[2]/div/span[3]/span[3]').text
             nS = dr.find_element_by_xpath('//*[@id="siteBody"]/section[1]/div/div[2]/div[2]/div/p').text
-
+            nI = dr.find_element_by_xpath('//*[@id="mainAlarm"]/a/div').text
             next1, next2, next3, next4, next5 = [],[],[],[],[]
 
             def listAdd(nextX, X):
@@ -49,6 +54,7 @@ def main():
                 nextX.append(dr.find_element_by_xpath(f'//*[@id="t{X}"]/div/div[1]/div[5]/span[1]').text + "°C")
                 nextX.append(dr.find_element_by_xpath(f'//*[@id="t{X}"]/div/div[1]/div[4]/span[1]').text + "°C")
                 dr.find_element_by_xpath(f'//*[@id="t{X}"]').click()
+                sleep(0.1) #Diğer günlere tıkladıktan sonra biraz beklesin diye
                 nextX.append("% " + dr.find_element_by_xpath(f'//*[@id="t{X}"]/div/div[2]/div[2]').text)
                 nextX.append(dr.find_element_by_xpath(f'//*[@id="t{X}"]/div/div[1]/div[3]').text)
 
@@ -59,27 +65,29 @@ def main():
             listAdd(next5, 5)
 
         except:
-            print("\nConnection Error!")
+            print("\nBağlantı hatası!")
             dr.close()
-            input("Press any key to close...")
+            input("Kapatmak için bir tuşa basın...")
             break          
 
         #verileri ekrana yazdırdık
         os.system('cls' if os.name == 'nt' else 'clear')
-        print(f"{banner}\nCity : {city}\nState : {state}\nUpdate DateTime : {nTime}\n" + "-"*70)
-        print(f"""          |  Temp  | Humidity |       Status       |
-----------------------------------------------------
-   Now    |{nT:^8}|{nH:^10}|{nS:^20}|
-----------------------------------------------------------------------
-   Days   | Temp (High) | Temp (Low) | Humidity |       Status       |
-----------------------------------------------------------------------
-{next1[0]:^10}|{next1[1]:^13}|{next1[2]:^12}|{next1[3]:^10}|{next1[4]:^20}|
-{next2[0]:^10}|{next2[1]:^13}|{next2[2]:^12}|{next2[3]:^10}|{next2[4]:^20}|
-{next3[0]:^10}|{next3[1]:^13}|{next3[2]:^12}|{next3[3]:^10}|{next3[4]:^20}|
-{next4[0]:^10}|{next4[1]:^13}|{next4[2]:^12}|{next4[3]:^10}|{next4[4]:^20}|
-{next5[0]:^10}|{next5[1]:^13}|{next5[2]:^12}|{next5[3]:^10}|{next5[4]:^20}|""")
+        print(f"{banner}\nİl : {city}\nİlçe : {state}\nGüncelleme Zamanı : {nTime}\n" + "-"*80)
+        print(f"""          |  Sıcaklık  |   Nem   |         Durum         |
+{"-"*58}
+   Şuan   |  {nT:^12}  |{nH:^9}|{nS:^24}|
+{"-"*80}
+  Günler  | Sıcaklık (Max) | Sıcaklık (Min) |   Nem   |         Durum          |
+{"-"*80}
+{next1[0]:^10}|{next1[1]:^16}|{next1[2]:^16}|{next1[3]:^9}|{next1[4]:^24}|
+{next2[0]:^10}|{next2[1]:^16}|{next2[2]:^16}|{next2[3]:^9}|{next2[4]:^24}|
+{next3[0]:^10}|{next3[1]:^16}|{next3[2]:^16}|{next3[3]:^9}|{next3[4]:^24}|
+{next4[0]:^10}|{next4[1]:^16}|{next4[2]:^16}|{next4[3]:^9}|{next4[4]:^24}|
+{next5[0]:^10}|{next5[1]:^16}|{next5[2]:^16}|{next5[3]:^9}|{next5[4]:^24}|
 
-        close = input("\nInput 'Q' or 'q' to close :: ") #programdan çıkılsın mı diye sorduk
+Uyarılar : {nI}""")
+
+        close = input("\nÇıkmak için 'Q' veya 'q' tuşuna basınız:: ") #programdan çıkılsın mı diye sorduk
 
 if __name__ == '__main__':
     main()
