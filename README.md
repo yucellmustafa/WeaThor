@@ -1,13 +1,42 @@
 # WeathStilo
-It is a weather program.
+Hava durumu tahminlerini siteden çeken bir uygulama.
 
-Used Selenium Library (pip install selenium)
+Selenium kütüphanesi kullanıldı. (pip install selenium)
 
-ChromeDriver --version : 87.0.4280.88 ([chromedriver.exe](https://chromedriver.chromium.org/downloads))
+---
 
-(You must download according to the version of Chrome on your computer.)
+- Kullanmadan önce işletim sisteminize uygun chromedriver dosyasını indiriniz. ([chromedriver](https://chromedriver.chromium.org/downloads))
+- Daha sonra ana klasördeki 'win' (windows için) veya 'linux' (linux için) klasörlerinin içindeki dosya ile değiştiriniz.
+- ChromeDriver mevcut versiyon : 89.0.4389.23
+- Kaynak : https://mgm.gov.tr/
 
-Data Source : https://mgm.gov.tr/
+---
+
+Windows kullananlar "releases kısmından gerekli dosyaları indirip kullanabilirler."
+
+---
+
+Linux kullanım : 
+
+- Sistemize göre pip3 indirme komutunu terminale yazarak kurunuz : 
+
+Debian/Ubuntu : ```apt install python3-pip```
+
+CentOS and RHEL : ```yum install python-pip```
+
+Fedora : ```dnf install python3```
+
+Arch : ```pacman -S python-pip```
+
+OpenSUSE : ```zypper install python3-pip```
+
+- Selenium kütüphanesini kurunuz : ```pip3 install selenium```
+
+- Daha sonra projenin kaynak dosyalarını indirin. 
+
+- Projenin ana dizininde bu komut ile programı kullanabilirsiniz : ```python3 ./main.py```
+
+---
 
 Program Screen Shoots :
 
