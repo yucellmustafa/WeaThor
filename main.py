@@ -72,10 +72,10 @@ def main():
 
         #verileri ekrana yazdırdık
         os.system('cls' if os.name == 'nt' else 'clear')
-        print(f"{banner}\nİl : {city}\nİlçe : {state}\nGüncelleme Zamanı : {nTime}\n" + "-"*80)
-        print(f"""          |  Sıcaklık  |   Nem   |         Durum         |
-{"-"*58}
-   Şuan   |  {nT:^12}  |{nH:^9}|{nS:^24}|
+        print(f"{banner}\nİl : {city}\nİlçe : {state}\nGüncelleme Zamanı : {nTime}\n" + "-"*59)
+        print(f"""          |  Sıcaklık  |   Nem   |          Durum         |
+{"-"*59}
+   Şuan   |{nT:^12}|{nH:^9}|{nS:^24}|
 {"-"*80}
   Günler  | Sıcaklık (Max) | Sıcaklık (Min) |   Nem   |         Durum          |
 {"-"*80}
