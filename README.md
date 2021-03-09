@@ -40,6 +40,7 @@ OpenSUSE : ```zypper install python3-pip```
 
 Program Screen Shoots :
 
-![weathStilo1](https://user-images.githubusercontent.com/49123562/103458116-16ad2f80-4d16-11eb-8a9c-f80985e5ac2f.png)
+![1](https://user-images.githubusercontent.com/49123562/110549467-28121e00-8143-11eb-83ef-2206d05f37be.png)
 
-![weathStilo2](https://user-images.githubusercontent.com/49123562/103458115-13b23f00-4d16-11eb-91b2-f32dcfffff43.png)
+![2](https://user-images.githubusercontent.com/49123562/110549470-28aab480-8143-11eb-84d3-5bdf85ed0f8a.png)
+
