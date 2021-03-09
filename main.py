@@ -32,7 +32,7 @@ def main():
         print(banner)
         city = input("İl : ")
         state = input("İlçe (varsayılan = merkez) : ")
-        print("Yükleniyor...",end="")
+        print("Yükleniyor...")
         url = f"https://mgm.gov.tr/?il={city}&ilce={state}"
 
         try:
