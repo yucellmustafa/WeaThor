@@ -12,23 +12,19 @@ Selenium kütüphanesi kullanıldı. (pip install selenium)
 
 ---
 
-Windows kullananlar "releases kısmından gerekli dosyaları indirip kullanabilirler."
+Windows kullananlar "releases" kısmından gerekli dosyaları indirip kullanabilirler.
 
 ---
 
 Linux kullanım : 
 
-- Sistemize göre pip3 indirme komutunu terminale yazarak kurunuz : 
+ Sistemize göre pip3 indirme komutunu terminale yazarak kurunuz : 
 
 Debian/Ubuntu : ```apt install python3-pip```
 
-CentOS and RHEL : ```yum install python-pip```
-
-Fedora : ```dnf install python3```
-
 Arch : ```pacman -S python-pip```
 
-OpenSUSE : ```zypper install python3-pip```
+Other : https://linuxconfig.org/install-pip-on-linux
 
 - Selenium kütüphanesini kurunuz : ```pip3 install selenium```
 
@@ -40,13 +36,11 @@ OpenSUSE : ```zypper install python3-pip```
 
 Program Screen Shoots :
 
-<img width="450px" src="https://user-images.githubusercontent.com/49123562/110549467-28121e00-8143-11eb-83ef-2206d05f37be.png">
-
-<img width="450px" src="https://user-images.githubusercontent.com/49123562/110549470-28aab480-8143-11eb-84d3-5bdf85ed0f8a.png">
+<img width="450px" src="https://user-images.githubusercontent.com/49123562/113356072-65388d00-934a-11eb-85c3-2b8f4d51a637.png">
 
 ---
 
-**MIT License**
+MIT License
 
 Copyright (c) 2021 Mustafa Yücel
 

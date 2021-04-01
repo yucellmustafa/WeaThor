@@ -5,12 +5,11 @@ from time import sleep
 def main():
     close = str()
     banner = """
-     __        __               _     _       ____    _     _   _         
-     \ \      / / ___    __ _  | |_  | |__   / ___|  | |_  (_) | |   ___  
-      \ \ /\ / / / _ \  / _` | | __| | '_ \  \___ \  | __| | | | |  / _ \ 
-       \ V  V / |  __/ | (_| | | |_  | | | |  ___) | | |_  | | | | | (_) |
-        \_/\_/   \___|  \__,_|  \__| |_| |_| |____/   \__| |_| |_|  \___/ 
-\n""" + "-"*80 + "\nKaynak : https://mgm.gov.tr/"
+__        __               _     _       ____    _     _   _         
+\ \      / / ___    __ _  | |_  | |__   / ___|  | |_  (_) | |   ___  
+ \ \ /\ / / / _ \  / _` | | __| | '_ \  \___ \  | __| | | | |  / _ \ 
+  \ V  V / |  __/ | (_| | | |_  | | | |  ___) | | |_  | | | | | (_) |
+   \_/\_/   \___|  \__,_|  \__| |_| |_| |____/   \__| |_| |_|  \___/ \n""" + "-"*59
 
     #tarayıcı oluşturup arka plana aldık
     try:
@@ -31,61 +30,51 @@ def main():
         os.system('cls' if os.name == 'nt' else 'clear') #terminali temizledik
         print(banner)
         city = input("İl : ")
-        state = input("İlçe (varsayılan = merkez) : ")
+        state = input("İlçe (varsayılan - merkez) : ")
         print("Yükleniyor...")
         url = f"https://mgm.gov.tr/?il={city}&ilce={state}"
 
         try:
-            #adrese gittik
-            dr.get(url)
+            dr.get(url) #adrese gittik
+            city, days = [],[[],[],[],[],[]]
             
             #verileri çektik
-            state = dr.find_element_by_xpath('//*[@id="siteBody"]/section[1]/div/div[2]/div[2]/h3[1]/span').text
-            city = dr.find_element_by_xpath('//*[@id="siteBody"]/section[1]/div/div[2]/div[2]/h3[1]/ziko').text
-            nTime = dr.find_element_by_xpath('//*[@id="siteBody"]/section[1]/div/div[2]/div[2]/p').text
-            nT = dr.find_element_by_xpath('//*[@id="siteBody"]/section[1]/div/div[2]/div[2]/div/h3/span[1]/ziko').text + "°C"
-            nH = "% " + dr.find_element_by_xpath('//*[@id="siteBody"]/section[1]/div/div[2]/div[2]/div/h3/span[2]/div/span[3]/span[3]').text
-            nS = dr.find_element_by_xpath('//*[@id="siteBody"]/section[1]/div/div[2]/div[2]/div/p').text
-            nI = dr.find_element_by_xpath('//*[@id="mainAlarm"]/a/div').text
-            next1, next2, next3, next4, next5 = [],[],[],[],[]
+            city.append(dr.find_element_by_xpath('//*[@id="siteBody"]/section[1]/div/div[2]/div[2]/h3[1]/ziko').text) #sehir
+            city.append(dr.find_element_by_xpath('//*[@id="siteBody"]/section[1]/div/div[2]/div[2]/h3[1]/span').text) #ilçe
+            city.append(dr.find_element_by_xpath('//*[@id="siteBody"]/section[1]/div/div[2]/div[2]/p').text) #anlık zaman
+            city.append(dr.find_element_by_xpath('//*[@id="siteBody"]/section[1]/div/div[2]/div[2]/div/h3/span[1]/ziko').text + "°C") #anlık sıcaklık
+            city.append("% " + dr.find_element_by_xpath('//*[@id="siteBody"]/section[1]/div/div[2]/div[2]/div/h3/span[2]/div/span[3]/span[3]').text) #anlık nem
+            city.append(dr.find_element_by_xpath('//*[@id="siteBody"]/section[1]/div/div[2]/div[2]/div/p').text) #anlık durum
+            alert = dr.find_element_by_xpath('//*[@id="mainAlarm"]/a/div').text #uyarılar
 
-            def listAdd(nextX, X):
-                nextX.append(dr.find_element_by_xpath(f'//*[@id="t{X}"]/div/div[1]/div[1]').text)
-                nextX.append(dr.find_element_by_xpath(f'//*[@id="t{X}"]/div/div[1]/div[5]/span[1]').text + "°C")
-                nextX.append(dr.find_element_by_xpath(f'//*[@id="t{X}"]/div/div[1]/div[4]/span[1]').text + "°C")
-                dr.find_element_by_xpath(f'//*[@id="t{X}"]').click()
+            for i in range(1,6):
+                days[i-1].append(dr.find_element_by_xpath(f'//*[@id="t{i}"]/div/div[1]/div[1]').text)
+                days[i-1].append(dr.find_element_by_xpath(f'//*[@id="t{i}"]/div/div[1]/div[5]/span[1]').text + " - " + dr.find_element_by_xpath(f'//*[@id="t{i}"]/div/div[1]/div[4]/span[1]').text + "°C")
+                dr.find_element_by_xpath(f'//*[@id="t{i}"]').click()
                 sleep(0.1) #Diğer günlere tıkladıktan sonra biraz beklesin diye
-                nextX.append("% " + dr.find_element_by_xpath(f'//*[@id="t{X}"]/div/div[2]/div[2]').text)
-                nextX.append(dr.find_element_by_xpath(f'//*[@id="t{X}"]/div/div[1]/div[3]').text)
-
-            listAdd(next1, 1)
-            listAdd(next2, 2)
-            listAdd(next3, 3)
-            listAdd(next4, 4)
-            listAdd(next5, 5)
+                days[i-1].append("% " + dr.find_element_by_xpath(f'//*[@id="t{i}"]/div/div[2]/div[2]').text)
+                days[i-1].append(dr.find_element_by_xpath(f'//*[@id="t{i}"]/div/div[1]/div[3]').text)
 
         except:
-            print("\nBağlantı hatası!")
+            print(f"\nBağlantı hatası!")
             dr.close()
             input("Kapatmak için bir tuşa basın...")
             break          
 
         #verileri ekrana yazdırdık
         os.system('cls' if os.name == 'nt' else 'clear')
-        print(f"{banner}\nİl : {city}\nİlçe : {state}\nGüncelleme Zamanı : {nTime}\n" + "-"*59)
-        print(f"""          |  Sıcaklık  |   Nem   |          Durum         |
+        print(banner)
+        print(f"Şehir : {city[0]} - {city[1]}\nGüncelleme Zamanı : {city[2]}\n" + "-"*59)
+        print(f"""Günler    |  Sıcaklık  |   Nem   |          Durum         |
 {"-"*59}
-   Şuan   |{nT:^12}|{nH:^9}|{nS:^24}|
-{"-"*80}
-  Günler  | Sıcaklık (Max) | Sıcaklık (Min) |   Nem   |         Durum          |
-{"-"*80}
-{next1[0]:^10}|{next1[1]:^16}|{next1[2]:^16}|{next1[3]:^9}|{next1[4]:^24}|
-{next2[0]:^10}|{next2[1]:^16}|{next2[2]:^16}|{next2[3]:^9}|{next2[4]:^24}|
-{next3[0]:^10}|{next3[1]:^16}|{next3[2]:^16}|{next3[3]:^9}|{next3[4]:^24}|
-{next4[0]:^10}|{next4[1]:^16}|{next4[2]:^16}|{next4[3]:^9}|{next4[4]:^24}|
-{next5[0]:^10}|{next5[1]:^16}|{next5[2]:^16}|{next5[3]:^9}|{next5[4]:^24}|
+Şuan      |{city[3]:^12}|{city[4]:^9}|{city[5]:^24}|
+{days[0][0]:<10}|{days[0][1]:^12}|{days[0][2]:^9}|{days[0][3]:^24}|
+{days[1][0]:<10}|{days[1][1]:^12}|{days[1][2]:^9}|{days[1][3]:^24}|
+{days[2][0]:<10}|{days[2][1]:^12}|{days[2][2]:^9}|{days[2][3]:^24}|
+{days[3][0]:<10}|{days[3][1]:^12}|{days[3][2]:^9}|{days[3][3]:^24}|
+{days[4][0]:<10}|{days[4][1]:^12}|{days[4][2]:^9}|{days[4][3]:^24}|
 
-Uyarılar : {nI}""")
+Uyarılar : {alert}""")
 
         close = input("\nÇıkmak için 'Q' veya 'q' tuşuna basınız:: ") #programdan çıkılsın mı diye sorduk
 
