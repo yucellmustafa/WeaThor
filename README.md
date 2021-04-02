@@ -1,4 +1,4 @@
-# WeathStilo
+# WeathStilo - Selenium
 Hava durumu tahminlerini siteden çeken bir uygulama.
 
 Selenium kütüphanesi kullanıldı. (pip install selenium)
