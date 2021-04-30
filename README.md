@@ -5,38 +5,30 @@ Selenium kütüphanesi kullanıldı. (pip install selenium)
 
 ---
 
-- Kullanmadan önce işletim sisteminize uygun chromedriver dosyasını indiriniz. ([chromedriver](https://chromedriver.chromium.org/downloads))
+- Kullanmadan önce işletim sisteminize ve chrome tarayıcınıza uygun chromedriver dosyasını indiriniz. ([chromedriver](https://chromedriver.chromium.org/downloads))
 - Daha sonra ana klasördeki 'win' (windows için) veya 'linux' (linux için) klasörlerinin içindeki dosya ile değiştiriniz.
-- ChromeDriver mevcut versiyon : 89.0.4389.23
-- Kaynak : https://mgm.gov.tr/
+- ChromeDriver mevcut versiyon : 90.0.4430.24
+- Hava durumu kaynağı : https://mgm.gov.tr/
 
----
+----
 
 Windows kullananlar "releases" kısmından gerekli dosyaları indirip kullanabilirler.
 
----
+--
 
 Linux kullanım : 
 
- Sistemize göre pip3 indirme komutunu terminale yazarak kurunuz : 
+- "releases" kısmından WeathStilo_linux.tar.gz dosyasını indiriniz.
+ 
+- Herhangi bir konuma dosyaları çıkarınız.
 
-Debian/Ubuntu : ```apt install python3-pip```
-
-Arch : ```pacman -S python-pip```
-
-Other : https://linuxconfig.org/install-pip-on-linux
-
-- Selenium kütüphanesini kurunuz : ```pip3 install selenium```
-
-- Daha sonra projenin kaynak dosyalarını indirin. 
-
-- Projenin ana dizininde bu komut ile programı kullanabilirsiniz : ```python3 ./main.py```
+- Dosyaların olduğu konumda terminalde ```./main``` komutu ile çalıştırınız.
 
 ---
 
-Program Screen Shoots :
+Program Ekran Görüntüsü :
 
-<img width="450px" src="https://user-images.githubusercontent.com/49123562/113356072-65388d00-934a-11eb-85c3-2b8f4d51a637.png">
+<img width="450px" src="https://user-images.githubusercontent.com/49123562/116677069-6f34c680-a9b0-11eb-83ad-702f11b62fc3.png">
 
 ---
 
