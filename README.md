@@ -4,7 +4,7 @@ Hava durumu tahminlerini siteden çeken bir uygulama.
 Selenium kütüphanesi kullanıldı. (pip install selenium)
 
 # Bilgilendirme
-- Kaynak kodu üzerinde çalışırken chromedriver dosyasını indiriniz ve ana klasöre atarak kullanabilirsiniz.
+- Kaynak kodu üzerinde çalışırken chromedriver dosyasını indiriniz ve ana klasöre atarak kullanabilirsiniz. ([chromedriver](https://chromedriver.chromium.org/downloads))
 - Hava durumu kaynağı : https://mgm.gov.tr/
 
 # Kullanım
