@@ -34,7 +34,6 @@ Uyarılar : {alert}""")
 
 def main():
     close = str()
-    flag = True
     
     #tarayıcı oluşturup arka plana aldık
     try:
@@ -42,9 +41,9 @@ def main():
         options.add_argument('--headless')
         options.add_argument('--log-level=3')
         if(os.name == "nt"):
-            dr = webdriver.Chrome(options=options)
+            dr = webdriver.Chrome('./chromedriver.exe',options=options)
         else:
-            dr = webdriver.Chrome(options=options)
+            dr = webdriver.Chrome('./chromedriver',options=options)
         
     except:
         print("'chromedriver' bulunamadı !")
@@ -63,10 +62,13 @@ def main():
             city, days = [],[[],[],[],[],[]]
             sleep(0.1)
 
+            
+            closewindow = dr.find_element_by_xpath('//*[@id="myModal"]/div/span[1]')
             #bilgilendirme penceresi varsa kapatır
-            while (flag):
-                dr.find_element_by_xpath('//*[@id="popup_check"]').click()
-                flag = False
+            if (closewindow):
+                sleep(0.5)
+                dr.find_element_by_xpath('//*[@id="myModal"]/div/span[1]').click()
+
 
             #verileri çektik
             city.append(dr.find_element_by_xpath('//*[@id="siteBody"]/section[1]/div/div[2]/div[2]/h3[1]/ziko').text) #sehir
