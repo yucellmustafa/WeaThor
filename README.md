@@ -23,7 +23,7 @@ Linux kullanım :
 
 # Ekran Görüntüsü
 
-<img width="450px" src="https://user-images.githubusercontent.com/49123562/119349008-48636a80-bca6-11eb-92e7-e1684929a7d5.png">
+<img width="450px" src="https://user-images.githubusercontent.com/49123562/119351368-11428880-bca9-11eb-8c5f-fd0536bd25f5.png">
 
 # Lisans
 
