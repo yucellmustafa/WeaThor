@@ -15,7 +15,7 @@ Windows kullananlar 'releases' kısmından WeathStilo_win.zip dosyasını indiri
 
 Linux kullanım : 
 
-- "releases" kısmından WeathStilo_linux.tar.gz dosyasını indiriniz.
+- "releases" kısmından WeathStilo_linux.zip dosyasını indiriniz.
  
 - Herhangi bir konuma dosyaları çıkarınız.
 
@@ -23,7 +23,7 @@ Linux kullanım :
 
 # Ekran Görüntüsü
 
-<img width="450px" src="https://user-images.githubusercontent.com/49123562/119351368-11428880-bca9-11eb-8c5f-fd0536bd25f5.png">
+<img width="50%" src="https://user-images.githubusercontent.com/49123562/119351368-11428880-bca9-11eb-8c5f-fd0536bd25f5.png">
 
 # Lisans
 
