@@ -4,12 +4,12 @@ Hava durumu tahminlerini siteden çeken bir uygulama.
 Selenium kütüphanesi kullanıldı. (pip install selenium)
 
 # Bilgilendirme
-
-- Kullanmadan önce işletim sisteminize ve chrome sürümünüze uygun chromedriver dosyasını indiriniz. Daha sonra ana klasördeki dosya ile değiştiriniz. ([chromedriver](https://chromedriver.chromium.org/downloads))
-- ChromeDriver mevcut versiyon : 90.0.4430.24
+- Kaynak kodu üzerinde çalışırken chromedriver dosyasını indiriniz ve ana klasöre atarak kullanabilirsiniz.
 - Hava durumu kaynağı : https://mgm.gov.tr/
 
 # Kullanım
+
+!! Kullanmadan önce işletim sisteminize ve chrome sürümünüze uygun chromedriver dosyasını indiriniz. Daha sonra ana klasördeki dosya ile değiştiriniz. ([chromedriver](https://chromedriver.chromium.org/downloads))
 
 Windows kullananlar 'releases' kısmından WeathStilo_win.zip dosyasını indirip kullanabilirler.
 
