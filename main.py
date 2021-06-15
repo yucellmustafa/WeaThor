@@ -62,14 +62,6 @@ def main():
             city, days = [],[[],[],[],[],[]]
             sleep(0.1)
 
-            
-            closewindow = dr.find_element_by_xpath('//*[@id="myModal"]/div/span[1]')
-            #bilgilendirme penceresi varsa kapatır
-            if (closewindow):
-                sleep(0.5)
-                dr.find_element_by_xpath('//*[@id="myModal"]/div/span[1]').click()
-
-
             #verileri çektik
             city.append(dr.find_element_by_xpath('//*[@id="siteBody"]/section[1]/div/div[2]/div[2]/h3[1]/ziko').text) #sehir
             city.append(dr.find_element_by_xpath('//*[@id="siteBody"]/section[1]/div/div[2]/div[2]/h3[1]/span').text) #ilçe
