@@ -6,6 +6,7 @@ Selenium kütüphanesi kullanıldı. (pip install selenium)
 # Bilgilendirme
 - Kaynak kodu üzerinde çalışırken chromedriver dosyasını indiriniz ve ana klasöre atarak kullanabilirsiniz. ([chromedriver](https://chromedriver.chromium.org/downloads))
 - Hava durumu kaynağı : https://mgm.gov.tr/
+- Icon sahibi : [Icon](https://www.flaticon.com/free-icon/storm_3445722?term=weather&page=1&position=41&page=1&position=41&related_id=3445722&origin=search)
 
 # Kullanım
 
