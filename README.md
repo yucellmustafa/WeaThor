@@ -3,24 +3,12 @@ Hava durumu tahminlerini siteden çeken bir uygulama.
 
 Selenium kütüphanesi kullanıldı. (pip install selenium)
 
+chromedriver'i güncelleyen kütüphane. (pip install chromedriver_autoinstaller)
+
 # Bilgilendirme
 - Hava durumu kaynağı : https://mgm.gov.tr/
 
 - Icon sahibi : [Icon](https://www.flaticon.com/free-icon/storm_3445722?term=weather&page=1&position=41&page=1&position=41&related_id=3445722&origin=search)
-
-! Kullanmadan önce işletim sisteminize ve chrome sürümünüze uygun chromedriver dosyasını indiriniz. Daha sonra ana klasördeki dosya ile değiştiriniz. ([chromedriver](https://chromedriver.chromium.org/downloads))
-
-# Kullanım
-
-Windows kullananlar 'releases' kısmından WeathStilo_win.zip dosyasını indirip kullanabilirler.
-
-Linux kullanım : 
-
-- "releases" kısmından WeathStilo_linux.zip dosyasını indiriniz.
- 
-- Herhangi bir konuma dosyaları çıkarınız.
-
-- Dosyaların olduğu konumda terminalde ```./main``` komutu ile çalıştırınız.
 
 # Ekran Görüntüsü
 
