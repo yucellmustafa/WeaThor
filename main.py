@@ -1,6 +1,10 @@
 import os
 from selenium import webdriver
 from time import sleep
+import chromedriver_autoinstaller
+
+drVer = str(chromedriver_autoinstaller.get_chrome_version())
+drVer = drVer[0:drVer.index(".")]
 
 banner = """
 __        __               _     _       ____    _     _   _         
@@ -37,16 +41,17 @@ def main():
     
     #tarayıcı oluşturup arka plana aldık
     try:
+        chromedriver_autoinstaller.install("./")
         options = webdriver.ChromeOptions()
         options.add_argument('--headless')
         options.add_argument('--log-level=3')
         if(os.name == "nt"):
-            dr = webdriver.Chrome('./chromedriver.exe',options=options)
+            dr = webdriver.Chrome(f'./{drVer}/chromedriver.exe',options=options)
         else:
-            dr = webdriver.Chrome('./chromedriver',options=options)
+            dr = webdriver.Chrome(f'./{drVer}/chromedriver',options=options)
         
     except:
-        print("'chromedriver' bulunamadı !")
+        print("'chromedriver' bulunamadı veya güncel değil. Internet bağlantınızı kontrol edin !")
         input("Kapatmak için 'enter'a basınız...")
         exit()
     
@@ -83,7 +88,6 @@ def main():
 
         except:
             print("\nBağlantı hatası!")
-            dr.close()
             input("Kapatmak için bir tuşa basın...")
             exit()          
 
