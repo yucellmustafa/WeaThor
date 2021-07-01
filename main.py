@@ -36,24 +36,34 @@ Günler    |  Sıcaklık  |   Nem   |             Durum            |
 
 Uyarılar : {alert}""")
 
+def createDr():
+    options = webdriver.ChromeOptions()
+    options.add_argument('--headless')
+    options.add_argument('--log-level=3')
+    if(os.name == "nt"):
+        return webdriver.Chrome(f'./{drVer}/chromedriver.exe',options=options)
+    else:
+        return webdriver.Chrome(f'./{drVer}/chromedriver',options=options)
+
+def drUpdater():
+    try:
+        print("'chromedriver' indiriliyor...")
+        chromedriver_autoinstaller.install("./")  
+    except:
+        input("\nInternet bağlantınızı kontrol edin !\nKapatmak için 'enter'a basınız...")
+        exit()
+
 def main():
     close = str()
     
     #tarayıcı oluşturup arka plana aldık
     try:
-        chromedriver_autoinstaller.install("./")
-        options = webdriver.ChromeOptions()
-        options.add_argument('--headless')
-        options.add_argument('--log-level=3')
-        if(os.name == "nt"):
-            dr = webdriver.Chrome(f'./{drVer}/chromedriver.exe',options=options)
-        else:
-            dr = webdriver.Chrome(f'./{drVer}/chromedriver',options=options)
-        
+        dr = createDr()
+
     except:
-        print("'chromedriver' bulunamadı veya güncel değil. Internet bağlantınızı kontrol edin !")
-        input("Kapatmak için 'enter'a basınız...")
-        exit()
+        drUpdater()
+        dr = createDr()
+
     
     while close.lower() != "q":
         printBanner()
