@@ -94,7 +94,7 @@ def main():
                 days[i-1].append("% " + dr.find_element_by_xpath(f'//*[@id="t{i}"]/div/div[2]/div[2]').text) #nem
                 days[i-1].append(dr.find_element_by_xpath(f'//*[@id="t{i}"]/div/div[1]/div[3]').text) #durum
 
-            alert = dr.find_element_by_xpath('//*[@id="mainAlarm"]/a/div').text #uyarılar
+            alert = dr.find_element_by_xpath('//*[@id="mainAlarm"]').text.replace("!\nUYARI","") #uyarılar
 
         except:
             print("\nBağlantı hatası!")
